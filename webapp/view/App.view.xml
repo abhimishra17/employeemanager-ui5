@@ -1,0 +1,50 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:formatter="employeemanager.model.formatter"
+  controllerName="employeemanager.controller.App">
+
+  <App id="app">
+    <VBox>
+      <HBox>
+        <SearchField 
+          placeholder="Search by name..."
+          liveChange="onSearch"
+          width="50%"/>
+        <Select change="onFilter">
+          <items>
+            <core:Item key="" text="All"/>
+            <core:Item key="HR" text="HR"/>
+            <core:Item key="IT" text="IT"/>
+            <core:Item key="Finance" text="Finance"/>
+          </items>
+        </Select>
+        <Button text="Add Employee" press="onAdd" />
+        <Button text="Sort by Name" press="onSort" />
+      </HBox>
+
+      <Table id="employeeTable" items="{/employees}" editable="true">
+        <columns>
+          <Column><Text text="ID"/></Column>
+          <Column><Text text="Name"/></Column>
+          <Column><Text text="Department"/></Column>
+          <Column><Text text="Actions"/></Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{id}" />
+              <Input value="{name}" />
+              <Input value="{department}" />
+              <HBox>
+                <Button icon="sap-icon://save" press="onSave"/>
+                <Button icon="sap-icon://delete" press="onDelete"/>
+              </HBox>
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+    </VBox>
+  </App>
+</mvc:View>
